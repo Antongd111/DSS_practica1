@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #1d72b8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155a8a;
+        }
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #1d72b8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Producto</h1>
+    <form th:action="@{/products}" th:object="${product}" method="post">
+		
+        <label>Nombre</label>
+        <input type="text" th:field="*{name}"/>
+        
+        <label>Precio</label>
+        <input type="text" th:field="*{price}"/>
+        
+        <button type="submit">Guardar</button>
+    </form>
+    
+    <a href="/products">Volver a la lista de productos</a>
+</body>
+</html>

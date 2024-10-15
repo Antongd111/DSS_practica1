@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        a {
+            color: #1d72b8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #1d72b8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155a8a;
+        }
+        .cart-message {
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Carrito de Compras</h1>
+
+<div th:if="${cartItems.isEmpty()}">
+    <p class="cart-message">El carrito está vacío. <a href="/products">Seguir comprando</a></p>
+</div>
+
+<div th:if="${!cartItems.isEmpty()}">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${cartItems}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td><a th:href="@{/cart/remove/{id}(id=${product.id})}">Eliminar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p><a href="/products">Seguir comprando</a></p>
+</div>
+
+</body>
+</html>
