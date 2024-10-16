@@ -21,7 +21,7 @@ public class ProductController {
         return "productos";
     }
 
-    // Obtener formulario para añadir un nuevo producto
+    // Formulario nuevo producto
     @GetMapping("/new")
     public String showProductForm(Model model) {
         model.addAttribute("product", new Product());
@@ -35,7 +35,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    // Editar un producto (mostrar formulario)
+    // Editar producto
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         Product product = productService.getProductById(id)
@@ -49,10 +49,5 @@ public class ProductController {
     public String deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProduct(id);
         return "redirect:/products";
-    }
-    
-    @GetMapping("/prueba")
-    public String prueba() {
-        return "prueba";  // Nombre del archivo de la plantilla sin la extensión .html
     }
 }

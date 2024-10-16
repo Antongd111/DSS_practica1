@@ -19,14 +19,14 @@ public class CartController {
     @Autowired
     private ProductService productService;
 
-    // Ver los productos del carrito
+    // Ver carrito
     @GetMapping("/cart")
     public String viewCart(Model model) {
         model.addAttribute("cartItems", cartService.getCartItems());
         return "cart";
     }
 
-    // Añadir un producto al carrito
+    // Añadir al carrito
     @PostMapping("/cart/add/{id}")
     public String addProductToCart(@PathVariable("id") Long productId) {
         Product product = productService.getProductById(productId)
@@ -35,7 +35,7 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    // Eliminar un producto del carrito
+    // Eliminar del carrito
     @GetMapping("/cart/remove/{id}")
     public String removeProductFromCart(@PathVariable("id") Long productId) {
         cartService.removeProductFromCart(productId);
